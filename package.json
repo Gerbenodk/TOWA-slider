@@ -1,0 +1,23 @@
+{
+  "name": "towa-slider",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "nvm-use": "nvm use || nvm install && nvm use",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "sass": "sass src/styles:dist",
+    "test": ""
+  },
+  "keywords": [],
+  "author": "Gerben Op den Kamp",
+  "description": "Slider web component",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "sass": "^1.82.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3"
+  }
+}
