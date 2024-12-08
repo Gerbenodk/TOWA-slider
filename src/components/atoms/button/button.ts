@@ -18,6 +18,13 @@ class Button extends HTMLElement {
 
         shadow.appendChild(template.content.cloneNode(true));
     }
+
+    connectedCallback() {
+        const type = this.getAttribute('type') || 'button--primary';
+
+        const button = this.shadowRoot!.querySelector('.button')!;
+        button.classList.add(type);
+    }
 }
 
 customElements.define('custom-button', Button);

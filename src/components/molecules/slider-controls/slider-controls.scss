@@ -1,4 +1,14 @@
 .slider-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  //@TODO add shadow
 
-  &__button { }
+  &__container {
+
+  }
+
+  &__arrows {
+
+  }
 }
