@@ -28,7 +28,7 @@ npm run build
 
 To preview the production build:
 ```bash
-npm run preview
+npm run serve
 ```
 
 ## Testing
