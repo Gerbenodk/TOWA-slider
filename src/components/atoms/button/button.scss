@@ -1,1 +1,26 @@
-.button { }
+.button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+
+  &--primary {
+    color: white;
+    background-color: #59C5C3;
+    border-radius: .25rem;
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: .25rem;
+  }
+
+  &--arrow {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
