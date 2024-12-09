@@ -33,13 +33,15 @@ npm run serve
 
 ## Testing
 
-The project is using ... framework 
+The project is using Cypress test framework 
 
-[//]: # (#TODO add command test framework)
+To run test CLI:
 ```bash
-
+npm run test-cli
 ```
 
-## Contributing
+To open the test UI:
+```bash
+npm run test-cli
+```
 
-## License

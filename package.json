@@ -8,13 +8,15 @@
     "build": "vite build",
     "serve": "vite preview",
     "sass": "sass src/assets/styles:dist",
-    "test": ""
+    "test-ui": "npx cypress open",
+    "test-cli": "npx cypress run"
   },
   "keywords": [],
   "author": "Gerben Op den Kamp",
   "description": "Slider web component",
   "devDependencies": {
     "autoprefixer": "^10.4.20",
+    "cypress": "^13.16.1",
     "postcss": "^8.4.49",
     "sass": "^1.82.0",
     "typescript": "^5.7.2",
