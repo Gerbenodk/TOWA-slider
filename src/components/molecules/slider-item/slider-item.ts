@@ -9,8 +9,15 @@ template.innerHTML = `
             <h1 class="slider-item__heading"></h1>
             <p class="slider-item__description"></p>
             <div class="slider-item__actions">
-                <custom-button class="slider-item__button learn-more">Mehr erfahren</custom-button>
-                <custom-button class="slider-item__button contact" type="button--secondary">Kontakt</custom-button>
+                <custom-button class="slider-item__button">
+                    Mehr erfahren
+                    <slot name="icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                            <path d="M4 12h14M15 8l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                        </svg>
+                    </slot>
+                </custom-button>
+                <custom-button class="slider-item__button" type="button--secondary">Kontakt</custom-button>
             </div>
         </div>
     </div>
@@ -19,7 +26,7 @@ template.innerHTML = `
 class SliderItem extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        const shadow = this.attachShadow({mode: 'open'});
 
         shadow.appendChild(template.content.cloneNode(true));
     }
@@ -29,17 +36,18 @@ class SliderItem extends HTMLElement {
         const description = this.getAttribute('description') || '';
 
         // @TODO make image field dynamic - for dev static image
-        const image = 'https://shorturl.at/V6Dkv';
+        const image = '../img/slide-item.png';
         // const image = this.getAttribute('image') || '';
 
         const slideElement = this.shadowRoot!.querySelector('.slider-item')!;
         const headingElement = this.shadowRoot!.querySelector('.slider-item__heading')!;
         const descriptionElement = this.shadowRoot!.querySelector('.slider-item__description')!;
 
-        // Set dynamic content
+        // Set dynamic content values
         slideElement.setAttribute('style', `background-image: url(${image});`);
         headingElement.textContent = heading;
         descriptionElement.textContent = description;
     }
 }
+
 customElements.define('slider-item', SliderItem);

@@ -22,8 +22,6 @@ class Button extends HTMLElement {
         const button = this.shadowRoot!.querySelector('.button')!;
         button.classList.add(type);
     }
-
-
 }
 
 customElements.define('custom-button', Button);

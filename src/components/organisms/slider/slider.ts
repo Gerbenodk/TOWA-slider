@@ -16,7 +16,7 @@ class Slider extends HTMLElement {
 
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        const shadow = this.attachShadow({mode: 'open'});
 
         shadow.appendChild(template.content.cloneNode(true));
     }
@@ -24,22 +24,26 @@ class Slider extends HTMLElement {
     connectedCallback() {
         this.fetchSliderData();
 
-        //Event fired by slider-contols component
+        //Events fired by slider-contols component
         const controls = this.shadowRoot!.querySelector('slider-controls')!;
-        controls.addEventListener('prev', () => this.goToSlide(-1));
-        controls.addEventListener('next', () => this.goToSlide(1));
+        controls.addEventListener('prev', () => this.goToNextSlide(-1));
+        controls.addEventListener('next', () => this.goToNextSlide(1));
+        controls.addEventListener('goToSlide', (event: CustomEvent) => this.goToSpecificSlide(event.detail));
 
         this.updateSlidePosition();
     }
 
     disconnectedCallback() {
         const controls = this.shadowRoot!.querySelector('slider-controls')!;
-        controls.removeEventListener('prev', () => this.goToSlide(-1));
-        controls.removeEventListener('next', () => this.goToSlide(1));
+        controls.removeEventListener('prev', () => this.goToNextSlide(-1));
+        controls.removeEventListener('next', () => this.goToNextSlide(1));
+        controls.removeEventListener('goToSlide', (event: CustomEvent) => this.goToSpecificSlide(event.detail));
 
         // @TODO find clean way to remove event listeners mobile
-        this.removeEventListener('touchstart', () => {});
-        this.removeEventListener('touchend', () => {});
+        this.removeEventListener('touchstart', () => {
+        });
+        this.removeEventListener('touchend', () => {
+        });
     }
 
     private async fetchSliderData() {
@@ -71,11 +75,21 @@ class Slider extends HTMLElement {
             this.slides.push(slide);
         });
 
+        const controls = this.shadowRoot!.querySelector('slider-controls')!;
+        controls.initBlocks(this.slides.length);
+
         this.updateSlidePosition();
         this.setupTouchGestures();
     }
 
-    private goToSlide(direction: number) {
+    private goToSpecificSlide(index: number) {
+        this.currentSlide = index;
+
+        this.updateSlidePosition();
+        this.updateActiveBlock();
+    }
+
+    private goToNextSlide(direction: number) {
         let sliderIndex = this.currentSlide + direction; // add number so forwards is + 1 backwards is + -1
 
         if (sliderIndex < 0) sliderIndex = this.slides.length - 1; // Loop back to the last slide
@@ -83,6 +97,12 @@ class Slider extends HTMLElement {
 
         this.currentSlide = sliderIndex;
         this.updateSlidePosition();
+        this.updateActiveBlock();
+    }
+
+    private updateActiveBlock() {
+        const controls = this.shadowRoot!.querySelector('slider-controls')!;
+        controls.setActiveBlock(this.currentSlide);
     }
 
     private updateSlidePosition() {
@@ -93,12 +113,12 @@ class Slider extends HTMLElement {
     private setupTouchGestures() {
         let startX = 0;
 
-        this.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX));
+        this.addEventListener('touchstart', (e) => (startX = e.touches[0].clientX), {passive: true});
         this.addEventListener('touchend', (e) => {
             const deltaX = e.changedTouches[0].clientX - startX;
-            if (deltaX > 50) this.goToSlide(-1);
-            if (deltaX < -50) this.goToSlide(1);
-        });
+            if (deltaX > 50) this.goToNextSlide(-1);
+            if (deltaX < -50) this.goToNextSlide(1);
+        }, {passive: true});
     }
 }
 
