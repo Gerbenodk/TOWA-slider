@@ -36,7 +36,7 @@ class SliderItem extends HTMLElement {
         const description = this.getAttribute('description') || '';
 
         // @TODO make image field dynamic - for dev static image
-        const image = '../img/slide-item.png';
+        const image = '../assets/img/slide-item.png';
         // const image = this.getAttribute('image') || '';
 
         const slideElement = this.shadowRoot!.querySelector('.slider-item')!;

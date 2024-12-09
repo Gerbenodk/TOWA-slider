@@ -1,13 +1,13 @@
 {
   "name": "towa-slider",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "nvm-use": "nvm use || nvm install && nvm use",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "sass": "sass src/styles:dist",
+    "sass": "sass src/assets/styles:dist",
     "test": ""
   },
   "keywords": [],

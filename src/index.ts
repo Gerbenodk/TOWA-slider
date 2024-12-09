@@ -1,4 +1,4 @@
-import './styles/main.scss';
+import './assets/styles/main.scss';
 
 // atoms
 import './components/atoms/button/button.ts'

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .button {
     padding: .625rem 1.25rem;
     border: none;
@@ -8,12 +10,12 @@
     gap: .5rem;
 
     &--primary {
-        color: white;
+        color: #ffffff;
         background-color: #009494;
         border-radius: .25rem;
 
         &:hover {
-            background-color: darken(#009494, 5%);
+            background-color: color.adjust(#009494, $lightness: -5%);
         }
     }
 

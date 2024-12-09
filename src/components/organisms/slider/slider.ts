@@ -59,12 +59,12 @@ class Slider extends HTMLElement {
     }
 
     // Populate slider with dynamically created slides
-    private populateSlides(products: any[]) {
+    private populateSlides(slides: any[]) {
         const track = this.shadowRoot!.querySelector('.slider__track')!;
 
         track.innerHTML = '';
 
-        products.forEach((product) => {
+        slides.forEach((product) => {
             const slide = document.createElement('slider-item');
             slide.setAttribute('heading', product.title);
             slide.setAttribute('description', product.description);
