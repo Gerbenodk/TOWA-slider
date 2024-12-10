@@ -1,6 +1,6 @@
 import styles from './slider-controls.scss?inline';
 
-const template = document.createElement('template');
+const template: HTMLTemplateElement = document.createElement('template');
 template.innerHTML = `
     <style>${styles}</style>
     <div class="slider-controls">
@@ -31,14 +31,14 @@ class SliderControls extends HTMLElement {
     private blocks: HTMLElement[] = [];
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        const shadow: ShadowRoot = this.attachShadow({ mode: 'open' });
 
         shadow.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
-        const prevButton = this.shadowRoot!.querySelector('.prev')!;
-        const nextButton = this.shadowRoot!.querySelector('.next')!;
+        const prevButton: Element = this.shadowRoot!.querySelector('.prev')!;
+        const nextButton: Element = this.shadowRoot!.querySelector('.next')!;
 
         prevButton.addEventListener('click', () => this.dispatchEvent(new CustomEvent('prev')));
         nextButton.addEventListener('click', () => this.dispatchEvent(new CustomEvent('next')));
@@ -46,13 +46,13 @@ class SliderControls extends HTMLElement {
 
     //gets initialized tough slider.ts
     initBlocks(slideCount: number) {
-        const blocksContainer = this.shadowRoot!.querySelector('.slider-controls__blocks')!;
+        const blocksContainer: Element = this.shadowRoot!.querySelector('.slider-controls__blocks')!;
         blocksContainer.innerHTML = '';
 
         this.blocks = [];
 
         for (let i = 0; i < slideCount; i++) {
-            const block = document.createElement('div');
+            const block: HTMLDivElement = document.createElement('div');
             block.classList.add('slider-controls__block');
             block.setAttribute('data-index', i.toString());
             block.addEventListener('click', () => this.dispatchEvent(new CustomEvent('goToSlide', { detail: i })));

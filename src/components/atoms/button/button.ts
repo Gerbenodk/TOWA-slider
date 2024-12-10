@@ -1,6 +1,6 @@
 import styles from './button.scss?inline';
 
-const template = document.createElement('template');
+const template: HTMLTemplateElement = document.createElement('template');
 template.innerHTML = `
     <style>${styles}</style>
     <button class="button">
@@ -11,15 +11,15 @@ template.innerHTML = `
 class Button extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({ mode: 'open' });
+        const shadow: ShadowRoot = this.attachShadow({ mode: 'open' });
 
         shadow.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
-        const type = this.getAttribute('type') || 'button--primary';
+        const type: string = this.getAttribute('type') || 'button--primary';
 
-        const button = this.shadowRoot!.querySelector('.button')!;
+        const button: Element = this.shadowRoot!.querySelector('.button')!;
         button.classList.add(type);
     }
 }

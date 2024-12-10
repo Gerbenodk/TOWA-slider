@@ -1,6 +1,6 @@
 import styles from './slider-item.scss?inline';
 
-const template = document.createElement('template');
+const template: HTMLTemplateElement = document.createElement('template');
 template.innerHTML = `
     <style>${styles}</style>
     <div class="slider-item">
@@ -26,22 +26,22 @@ template.innerHTML = `
 class SliderItem extends HTMLElement {
     constructor() {
         super();
-        const shadow = this.attachShadow({mode: 'open'});
+        const shadow: ShadowRoot = this.attachShadow({mode: 'open'});
 
         shadow.appendChild(template.content.cloneNode(true));
     }
 
     connectedCallback() {
-        const heading = this.getAttribute('heading') || '';
-        const description = this.getAttribute('description') || '';
+        const heading: string = this.getAttribute('heading') || '';
+        const description: string = this.getAttribute('description') || '';
 
         // @TODO make image field dynamic - for dev static image
-        const image = '../assets/img/slide-item.png';
+        const image: string = '../assets/img/slide-item.png';
         // const image = this.getAttribute('image') || '';
 
-        const slideElement = this.shadowRoot!.querySelector('.slider-item')!;
-        const headingElement = this.shadowRoot!.querySelector('.slider-item__heading')!;
-        const descriptionElement = this.shadowRoot!.querySelector('.slider-item__description')!;
+        const slideElement: Element = this.shadowRoot!.querySelector('.slider-item')!;
+        const headingElement: Element = this.shadowRoot!.querySelector('.slider-item__heading')!;
+        const descriptionElement: Element = this.shadowRoot!.querySelector('.slider-item__description')!;
 
         // Set dynamic content values
         slideElement.setAttribute('style', `background-image: url(${image});`);
